@@ -5,11 +5,17 @@ Created on Sun Apr 19 13:01:32 2020
 @author: sdien
 """
 
+################################################################
+#            ConvNN for Recognizing Digits                     #
+################################################################
+
+
+
+
 import os
 os.getcwd()
 os.chdir("C:\\Users\\sdien\\Documents\\GitHub\\SudokuSolver")
 
-import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras import models, layers, losses
@@ -39,7 +45,7 @@ tf.keras.backend.clear_session()
 # Build Model
 model = models.Sequential()
 
-model.add(layers.Conv2D(16, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+model.add(layers.Conv2D(16, (3, 3), activation='relu', input_shape=(28, 28, 1)))     
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(32, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
