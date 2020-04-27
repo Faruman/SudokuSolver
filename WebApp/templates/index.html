@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Sudoku Solver
+{% endblock %}
+
+{% block navbar_title %}
+    Sudoku Solver
+{% endblock %}
+
+{% block content %}
+    <div class="container text-light">
+        <div class="row">
+            <div class="col-6 p-3"><button type="button" class="btn btn-light btn-block input-btn text-dark">Upload</button></div>
+            <div class="col-6 p-3"><button type="button" class="btn btn-light btn-block input-btn text-dark">Generate</button></div>
+        </div>
+        <div class="row align-items-center p-3">
+            <table class="table table-bordered mb-0 p-5 sudoku">
+                <colgroup><col><col><col>
+                <colgroup><col><col><col>
+                <colgroup><col><col><col>
+                <tbody>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true"></td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true"></td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true"></td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true"></td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">1</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                        <td class="pt-2-half align-middle sudoku-box" contenteditable="true">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-6 p-3"><button type="button" class="btn btn-light btn-block input-btn text-dark">Check</button></div>
+            <div class="col-6 p-3"><button type="button" class="btn btn-light btn-block input-btn text-dark">Solve</button></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{{url_for('static', filename='custom.js')}}"></script>
+{% endblock %}
