@@ -11,6 +11,17 @@ $(document).ready(function() {
 });
 
 $( window ).resize(function() {
-    adjustSudokuBox()
+    adjustSudokuBox();
     //add function to add toggle classes to navbar header if screen size is below threshold
+    if ($( window ).width() < 768){
+        $('.navbar').each(function() {
+            $(this).attr('data-toggle', "collapse");
+            $(this).attr('data-target', "#navbarHeader")
+        })
+    } else {
+        $('.navbar').each(function() {
+            $(this).removeAttr('data-toggle');
+            $(this).removeAttr('data-target')
+        })
+    }
 });
