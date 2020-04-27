@@ -25,6 +25,16 @@ colgroup, tbody {
     border: solid medium;
 }
 
+/*style sudoku grid for functions */
+.sudoku-box[contenteditable="false"] {
+    background: lightgrey;
+}
+.sudoku-box.error {
+    background: darkred;
+    color: white;
+    border-color: black;
+}
+
 /*style for different screen sizes */
 .sudoku{
     margin: auto;
@@ -38,7 +48,13 @@ colgroup, tbody {
     }
 }
 @media (max-width: 768px) {
-    .navbar-toggler .modify-btn{
+    .navbar-toggler{
+        display: none;
+    }
+    .navbar{
+        cursor: pointer;
+    }
+     .modify-btn{
         display: none;
     }
 }
