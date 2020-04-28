@@ -26,10 +26,7 @@ colgroup, tbody {
 }
 
 /*style sudoku grid for functions */
-.sudoku-box[contenteditable="false"]{
-    background: lightgrey;
-}
-.locked{
+.sudoku-box.locked{
     background: lightgrey;
 }
 .sudoku-box.error {
@@ -67,7 +64,7 @@ colgroup, tbody {
     .navbar{
         cursor: pointer;
     }
-     .modify-btn{
+    .modify-btn{
         display: none;
     }
 }
@@ -95,4 +92,13 @@ body {
 }
 .spinner-border.text-danger{
     color: darkred!important;
+}
+
+/* flash message on top of the page */
+.flash-box{
+    display: none;
+}
+.flash-message{
+    font-size: 1rem;
+    margin-bottom: 0;
 }
