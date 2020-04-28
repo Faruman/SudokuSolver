@@ -159,7 +159,11 @@ function solve(solutionType){
                 $('.flash-box').fadeOut()
             }, 10000)
         }
-        $('#loading').css('display', 'none');
+        if (JSON.stringify(puzzle) == JSON.stringify($('.sudoku').data('puzzle')) && typeof $('.sudoku').data('solution') !== 'undefined') {
+            setTimeout(function () {
+                $('#loading').css('display', 'none')
+            }, 500)
+        }
     }
 }
 
