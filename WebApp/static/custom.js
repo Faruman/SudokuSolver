@@ -42,7 +42,9 @@ function getPuzzle() {
 
 // adjust sudoku grid on load
 $(document).ready(function() {
-    adjustSudokuBox()
+    $('.modify-btn').data('mode', 'solve')
+    adjustSudokuBox();
+    generate()
 });
 
 // adjsut webpage when screen size changes
@@ -69,6 +71,13 @@ $('.sudoku-box').on('keydown paste', function(event) {
         event.preventDefault();
     } else {
         $(this).removeClass('error')
+        if ($(".modify-btn" ).data('mode')=='modify') {
+            if (always_allowed_keys.includes(event.keyCode)){
+                $(this).removeClass('locked')
+            } else {
+                $(this).addClass('locked')
+            }
+        }
     }
 });
 
@@ -93,13 +102,17 @@ function generate(){
 
 //function to solve a sudoku by sending it to the server, b solution type it can be determined if the complete solution is displayed or only the errors are highlighted.
 function solve(solutionType){
-    $('#loading').find('h3').html('Solving Sudoku ...');
+    if (solutionType == "check") {
+        $('#loading').find('h3').html('Checking Sudoku ...');
+    } else {
+        $('#loading').find('h3').html('Solving Sudoku ...');
+    }
     $('#loading').css('display', 'flex');
 
     var puzzle = getPuzzle()
 
-    if (JSON.stringify({'puzzle': puzzle}) == $('.sudoku').data('puzzle') && $('.sudoku')[0].hasAttribute('data-solution')){
-        solveSuccess(JSON.parse($('.sudoku').data('solution')))
+    if (JSON.stringify(puzzle) == JSON.stringify($('.sudoku').data('puzzle')) && typeof $('.sudoku').data('solution') !== 'undefined'){
+        solveSuccess({'solution' : $('.sudoku').data('solution'), 'valid': true})
     } else {
         $.ajax({
             type: "POST",
@@ -107,41 +120,71 @@ function solve(solutionType){
             data: {'puzzle': JSON.stringify(puzzle)},
             success: solveSuccess,
             error: errorOccurred,
-            dataType: "text"
+            dataType: "json"
         });
     }
 
     function solveSuccess(data) {
+        var solution = data.solution;
+
         $('.sudoku').data('puzzle', puzzle);
-        $('.sudoku').data('solution', JSON.stringify('solution',JSON.parse(data).solution));
 
-        var solution = JSON.parse(data).solution;
+        if(data.valid) {
 
-        for (var i = 0; i < solution.length; i++) {
-            for (var j = 0; j < solution[i].length; j++){
-                if (puzzle[i][j] != 0){
-                    $('#'.concat(i.toString(), '-', j.toString())).html(puzzle[i][j].toString());
-                    $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'false');
-                    $('#'.concat(i.toString(), '-', j.toString())).addClass('locked')
-                }else{
-                    if (solutionType == "check"){
-                        if (solution[i][j] != $('#'.concat(i.toString(), '-', j.toString())).html() && $('#'.concat(i.toString(), '-', j.toString())).html() != ""){
-                            $('#'.concat(i.toString(), '-', j.toString())).addClass('error')
-                        }
+            $('.sudoku').data('solution', solution);
+
+            for (var i = 0; i < solution.length; i++) {
+                for (var j = 0; j < solution[i].length; j++) {
+                    if (puzzle[i][j] != 0) {
+                        $('#'.concat(i.toString(), '-', j.toString())).html(puzzle[i][j].toString());
+                        $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'false');
+                        $('#'.concat(i.toString(), '-', j.toString())).addClass('locked')
                     } else {
-                        $('#'.concat(i.toString(), '-', j.toString())).html(solution[i][j].toString());
+                        if (solutionType == "check") {
+                            if (solution[i][j] != $('#'.concat(i.toString(), '-', j.toString())).html() && $('#'.concat(i.toString(), '-', j.toString())).html() != "") {
+                                $('#'.concat(i.toString(), '-', j.toString())).addClass('error')
+                            }
+                        } else {
+                            $('#'.concat(i.toString(), '-', j.toString())).html(solution[i][j].toString());
+                        }
+                        $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'true')
+                        $('#'.concat(i.toString(), '-', j.toString())).removeClass('locked')
                     }
-                    $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'true')
-                    $('#'.concat(i.toString(), '-', j.toString())).removeClass('locked')
                 }
             }
+        } else {
+            $('.flash-message').html('Sorry, for your sudoku no solution was found.');
+            $('.flash-box').fadeIn();
+            setTimeout(function() {
+                $('.flash-box').fadeOut()
+            }, 10000)
         }
-
-        $('#loading').css('display', 'none')
+        $('#loading').css('display', 'none');
     }
 }
 
+//function to modify the sudoku to create a new one
+$(".modify-btn" ).click(function() {
+    if ($(this).data('mode')=='solve'){
+        $(this).html("Finish");
+        $(this).parent().siblings().each(function() { $(this).children('.btn').prop('disabled', true) });
+        $(this).data('mode', 'modify')
+        $('.sudoku-box').each(function() {
+            $(this).attr('contenteditable', 'true');
+        });
+        if ($('.sudoku')[0].hasAttribute('data-solution')) {
+            $('.sudoku').removeData('solution')
+        }
 
+    } else {
+        $(this).html("Modify");
+        $(this).parent().siblings().each(function() { $(this).children('.btn').prop('disabled', false) });
+        $(this).data('mode', 'solve')
+        $('.sudoku-box.locked').each(function() {
+            $(this).attr('contenteditable', 'false');
+        })
+    }
+});
 
 function errorOccurred(){
     alert("Sorry an error occured while fetching the data. Please reload the page and try again")
