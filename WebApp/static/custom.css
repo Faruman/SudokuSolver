@@ -26,7 +26,10 @@ colgroup, tbody {
 }
 
 /*style sudoku grid for functions */
-.sudoku-box[contenteditable="false"] {
+.sudoku-box[contenteditable="false"]{
+    background: lightgrey;
+}
+.locked{
     background: lightgrey;
 }
 .sudoku-box.error {
@@ -34,6 +37,16 @@ colgroup, tbody {
     color: white;
     border-color: black;
 }
+.sudoku-box{
+    overflow: hidden;
+}
+.sudoku-box:focus {
+    outline: darkred auto 1px;
+    outline-color: darkred;
+    outline-style: auto;
+    outline-width: 1px;
+}
+
 
 /*style for different screen sizes */
 .sudoku{
@@ -67,4 +80,19 @@ body::-webkit-scrollbar {
 /* for IE and Edge */
 body {
   -ms-overflow-style: none;
+}
+
+/* loading overlay above sudoku grid */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none; /* change to "display: flex" to display overlay properly*/
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    width: calc(100% - 2rem)!important;
+    height: calc(100% - 2rem)!important;
+}
+.spinner-border.text-danger{
+    color: darkred!important;
 }
