@@ -53,12 +53,20 @@ $( window ).resize(function() {
     if ($( window ).width() < 768){
         $('.navbar').each(function() {
             $(this).attr('data-toggle', "collapse");
-            $(this).attr('data-target', "#navbarHeader")
+            $(this).attr('data-target', "#navbarHeader");
+        });
+        $('.btn-div').each(function() {
+            $(this).addClass('col-6');
+            $(this).removeClass('col-12')
         })
     } else {
         $('.navbar').each(function() {
             $(this).removeAttr('data-toggle');
             $(this).removeAttr('data-target')
+        });
+        $('.btn-div').each(function() {
+            $(this).addClass('col-12');
+            $(this).removeClass('col-6')
         })
     }
 });

@@ -64,7 +64,7 @@ colgroup, tbody {
     .navbar{
         cursor: pointer;
     }
-    .modify-btn{
+    .modify-div{
         display: none;
     }
 }
