@@ -37,6 +37,9 @@ def crop_sudoku(img):
         cv2.line(img,(x1,y1),(x2,y2),(0,255,0),2)
     
     plt.imshow(img)
+    plt.imshow(img)
+    plt.imshow(img)
+    plt.imshow(img)
     
     cv2.imwrite('houghlines5.jpg',img)
         
