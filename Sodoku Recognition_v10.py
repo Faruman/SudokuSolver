@@ -48,10 +48,13 @@ def extract_sudoku(img):
     img_blur = cv2.GaussianBlur(img_gray, (5,5), 1)
     img_edges = cv2.Canny(img_blur,30,200) # detects edges in image
     
+    kernel_cross = cv2.getStructuringElement(cv2.MORPH_CROSS,(3,3)) # define cross kernel
+    img_morph = cv2.morphologyEx(img_edges, cv2.MORPH_CLOSE, kernel_cross) # close grid lines
+    
     # Find largest contour
-    _, contours,_ = cv2.findContours(img_edges,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) # get contours
+    _, contours,_ = cv2.findContours(img_morph,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) # get contours
     cnt = max(contours, key = cv2.contourArea) # find largest contour by area
-    cnt = cnt.reshape((-1,2))
+    cnt = cnt.reshape((-1,2)) 
 
     # Find corner points of contour
     s = np.sum(cnt, axis=1)             # x + y
@@ -135,14 +138,13 @@ numbers_list = extract_numbers(cimg)
 numbers_plot = list81_to_image(numbers_list)
 show(numbers_plot)
 
-# Test MANY
-for img in imgs[50:]:      
+
+# Test ALL
+for img in imgs:      
     cimg = extract_sudoku(img)
     
     show(cimg)
    
-# Crop-Probleme: 2, 8, 14, 38, 45, 47, 54
-
          
 #%% Other Stuff   
     
