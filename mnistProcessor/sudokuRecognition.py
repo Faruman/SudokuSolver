@@ -120,7 +120,7 @@ def extract_numbers(cimg):
     preds = outputs[1].numpy().reshape((9, 9))
     probs = outputs[0].numpy().reshape((9, 9))
 
-    return preds
+    return predsgit 
 
 
 raw_img = cv2.imread("D:\Programming\Python\SudokuSolver\data\sudoku_img\mixed\image10.jpg")
