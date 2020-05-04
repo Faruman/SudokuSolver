@@ -3,7 +3,7 @@
 #                      Identifying Sudoku Field                              #
 ##############################################################################
 
-#%% Setup 
+# Setup
 import os
 os.getcwd()
 os.chdir("C:\\Users\\sdien\\Documents\\GitHub\\SudokuSolver")
@@ -11,7 +11,6 @@ os.chdir("C:\\Users\\sdien\\Documents\\GitHub\\SudokuSolver")
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
-
 
 
 #%% Define functions

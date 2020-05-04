@@ -3,17 +3,16 @@
 #                    Model for Recognizing Digits                            #
 ##############################################################################
 
-#%% Setup 
-
+# Setup
 import os
-os.getcwd()
-os.chdir("C:\\Users\\sdien\\Documents\\GitHub\\SudokuSolver")
-
 import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras import models, layers, losses
+os.getcwd()
+os.chdir("C:\\Users\\sdien\\Documents\\GitHub\\SudokuSolver")
 
-#%% Define functions
+
+# Define functions
 def load_MNIST():
     global x_train, y_train, x_test, y_test 
     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
@@ -60,7 +59,7 @@ def create_model():
 
     
     
-#%% Build model
+# Build model
 
    
 load_MNIST()
