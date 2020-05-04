@@ -1,2 +1,5 @@
 # PyCharm Project Files
 WebApp/.idea
+data/MNIST
+data/moddedMNIST
+mnistProcessor/.idea

@@ -6,7 +6,7 @@
 #%% Setup 
 import os
 os.getcwd()
-os.chdir("C:\\Users\\sdien\\Documents\\GitHub\\SudokuSolver")
+os.chdir("D:\Programming\Python\SudokuSolver")
 
 import numpy as np
 import cv2
@@ -33,7 +33,7 @@ def extract_sudoku(img):
     img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) # convert to gray
     img_edges = cv2.Canny(img_gray,30,150) # detects edges in image
     # Find largest contour
-    _, contours,_ = cv2.findContours(img_edges,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) # get contours
+    contours,_ = cv2.findContours(img_edges,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) # get contours
     largest_cnt = sorted(contours, key=cv2.contourArea, reverse=True)[0] # sort by area and take first element
 
     # Draw largest rectangle
@@ -95,7 +95,7 @@ def extract_numbers(cimg):
         
         for i in range(2,20):
             # Convert to binary depending on threshold i
-            n_bw = cv2.adaptiveThreshold(n_gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, i) 
+            n_bw = cv2.adaptiveThreshold(n_gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, i)
             #plt.imshow(n_bw, 'gray')
             # Mask outside frame (= gridlines)
             x = y = int(num_height * 0.05)  
@@ -162,18 +162,18 @@ def list81_to_image(list81):
       
 load_imgdata()
 
-img = imgs_upload[2]     # somewhat working example: imgs[1], img_uplaod[1,3]
+img = imgs_upload[1]     # somewhat working example: imgs[1], img_uplaod[1,3]
 plt.imshow(img)
-
+plt.show()
 
 cimg = extract_sudoku(img)
 plt.imshow(cimg)
-
+plt.show()
 
 numbers_list = extract_numbers(cimg)
 numbers_plot = list81_to_image(numbers_list)
 plt.imshow(numbers_plot, 'gray_r')
-
+plt.show()
 
 #### TODO: Filter grid somehow? maybe dont plot if points in stats are extreme like in cornor??
 #### TODO: choosing optimal filter still looks spagetti
@@ -194,10 +194,10 @@ ConvModel = tf.keras.models.load_model('model')
 #%% Other Stuff   
     
             
-        """# Filter based on area
-        areas = stats[:,-1] # extract area from stats
-        areas = np.where(areas == np.max(areas), 0, areas)  # set largest component (= background) to 0
-        areas = np.where(areas < 0.01 * np.sum(areas), 0, areas) # set components below 1% (= noise) to 0
-        idx = np.nonzero(areas)"""
+"""# Filter based on area
+areas = stats[:,-1] # extract area from stats
+areas = np.where(areas == np.max(areas), 0, areas)  # set largest component (= background) to 0
+areas = np.where(areas < 0.01 * np.sum(areas), 0, areas) # set components below 1% (= noise) to 0
+idx = np.nonzero(areas)"""
     
     
