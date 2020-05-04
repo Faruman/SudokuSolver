@@ -102,7 +102,8 @@ x_test[np.where(y_test == 0)] = np.zeros([len(np.where(y_test == 0)[0]), 28, 28]
 
 #create new samples
 number_of_extends = 10
-inverted = False
+inverted_training = True
+inverted_test = False
 x_train_output = np.array(list(map(resizeFunc, x_train)))
 y_train_output = y_train
 x_test_output = np.array(list(map(resizeFunc, x_test)))
@@ -115,9 +116,10 @@ for i in range(1,number_of_extends):
     y_test_output = np.concatenate((y_test_output, y_test), axis=0)
     print(x_train_output.shape)
 
-if inverted == True:
+if inverted_training == True:
     x_train_output = np.concatenate((x_train_output, np.array(list(map(invertFunc, x_train_output)))), axis=0)
     y_train_output = np.concatenate((y_train_output, y_train_output), axis=0)
+if inverted_test == True:
     x_test_output = np.concatenate((x_test_output, np.array(list(map(invertFunc, x_test_output)))), axis=0)
     y_test_output = np.concatenate((y_test_output, y_test_output), axis=0)
 
