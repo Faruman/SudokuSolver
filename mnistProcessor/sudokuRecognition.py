@@ -57,7 +57,7 @@ def extract_sudoku(img):
     img_morph = cv2.morphologyEx(img_edges, cv2.MORPH_CLOSE, kernel_cross)  # close grid lines
 
     # Find largest contour
-    _, contours, _ = cv2.findContours(img_morph, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  # get contours
+    contours, _ = cv2.findContours(img_morph, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  # get contours
     cnt = max(contours, key=cv2.contourArea)  # find largest contour by area
     cnt = cnt.reshape((-1, 2))
 
