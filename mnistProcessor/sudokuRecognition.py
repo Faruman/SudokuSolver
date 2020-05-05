@@ -38,7 +38,7 @@ class Complex2_Net(nn.Module):
             nn.ReLU(inplace=True),
             nn.Dropout(0.25),
             nn.Linear(128, 10),
-            nn.Softmax(dim=10)
+            nn.Softmax(dim=1)
         )
 
     def forward(self, x):
@@ -85,7 +85,7 @@ def extract_sudoku(img):
 def extract_numbers(cimg):
     #load my model
     model = Complex2_Net()
-    model.load_state_dict(torch.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/model_complex_v2_ext.sav"))
+    model.load_state_dict(torch.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/model_complex_v2_ext2.sav"))
     model.eval()
 
     # Split image into 81 cells with numbers
@@ -120,10 +120,11 @@ def extract_numbers(cimg):
     return preds, probs
 
 
-raw_img = cv2.imread("D:\Programming\Python\SudokuSolver\data\sudoku_img\mixed\image10.jpg")
+raw_img = cv2.imread("D:\Programming\Python\SudokuSolver\data\sudoku_img\mixed\image (3).jpg")
 plt.imshow(cv2.cvtColor(raw_img, cv2.COLOR_BGR2GRAY).astype('float32'), cmap='gray_r', vmin=0, vmax=255)
 plt.show()
 cimg = extract_sudoku(raw_img)
 plt.imshow(cv2.cvtColor(cimg, cv2.COLOR_BGR2GRAY).astype('float32'), cmap='gray_r', vmin=0, vmax=255)
 plt.show()
 sudoku = extract_numbers(cimg)
+print(sudoku)

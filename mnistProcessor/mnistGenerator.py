@@ -10,6 +10,14 @@ def resizeFunc(x):
     dim = 50
     return cv2.resize(x, (dim, dim) , interpolation = cv2.INTER_CUBIC)
 
+def generateComputerImage(number):
+    font = [cv2.FONT_HERSHEY_SIMPLEX, cv2.FONT_HERSHEY_DUPLEX, cv2.FONT_HERSHEY_COMPLEX, cv2.FONT_HERSHEY_TRIPLEX][random.randint(0,3)]
+    fontsize = [2, 3][random.randint(0,1)]
+    dim = 50
+    image = np.zeros([dim, dim], dtype=np.uint8)
+    image = cv2.putText(image, str(number), (int(round(0.15*dim, 0)),int(dim-round(0.15*dim, 0))), font, 1.75, 255, fontsize)
+    return image
+
 def shrinkFunc(x):
     num_rows, num_cols = x.shape[:2]
     bgColor = 0
@@ -96,17 +104,29 @@ def createAdditionalSamples(x, showImages):
 #Modify MNIST Data
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
 
+#resize images
+x_train = np.array(list(map(resizeFunc, x_train)))
+x_test = np.array(list(map(resizeFunc, x_test)))
+
+#add artificial samples to have computer written images
+temp_y_train = np.random.randint(low=0, high=9, size=int(round(0.1*x_train.shape[0], 0)))
+x_train = np.concatenate((x_train, np.array(list(map(generateComputerImage, temp_y_train)))), axis=0)
+y_train = np.concatenate((y_train, temp_y_train), axis=0)
+temp_y_test = np.random.randint(low=0, high=9, size=int(round(0.1*x_test.shape[0], 0)))
+x_test = np.concatenate((x_test, np.array(list(map(generateComputerImage, temp_y_test)))), axis=0)
+y_test = np.concatenate((y_test, temp_y_test), axis=0)
+
 #replace zeros from train and test set with empty images
-x_train[np.where(y_train == 0)] = np.zeros([len(np.where(y_train == 0)[0]), 28, 28],dtype=np.uint8)
-x_test[np.where(y_test == 0)] = np.zeros([len(np.where(y_test == 0)[0]), 28, 28],dtype=np.uint8)
+x_train[np.where(y_train == 0)] = np.zeros([len(np.where(y_train == 0)[0]), 50, 50],dtype=np.uint8)
+x_test[np.where(y_test == 0)] = np.zeros([len(np.where(y_test == 0)[0]), 50, 50],dtype=np.uint8)
 
 #create new samples
 number_of_extends = 10
 inverted_training = True
 inverted_test = False
-x_train_output = np.array(list(map(resizeFunc, x_train)))
+x_train_output = x_train
 y_train_output = y_train
-x_test_output = np.array(list(map(resizeFunc, x_test)))
+x_test_output = x_test
 y_test_output = y_test
 
 for i in range(1,number_of_extends):
@@ -124,7 +144,7 @@ if inverted_test == True:
     y_test_output = np.concatenate((y_test_output, y_test_output), axis=0)
 
 path = "D:/Programming/Python/SudokuSolver/data/moddedMNIST/"
-np.save(path + "x_train_ext.npy", x_train_output)
-np.save(path + "y_train_ext.npy", y_train_output)
-np.save(path + "x_test_ext.npy", x_test_output)
-np.save(path + "y_test_ext.npy", y_test_output)
+np.save(path + "x_train_ext3.npy", x_train_output)
+np.save(path + "y_train_ext3.npy", y_train_output)
+np.save(path + "x_test_ext3.npy", x_test_output)
+np.save(path + "y_test_ext3.npy", y_test_output)
