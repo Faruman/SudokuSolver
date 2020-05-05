@@ -50,28 +50,25 @@ class Complex2_Net(nn.Module):
 def extract_sudoku(img):
     # Detect edges with "Canny Edge Detector"
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # convert to gray
-    img_edges = cv2.Canny(img_gray, 30, 150)  # detects edges in image
+    img_blur = cv2.GaussianBlur(img_gray, (5, 5), 1)
+    img_edges = cv2.Canny(img_blur, 30, 200)  # detects edges in image
+
+    kernel_cross = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))  # define cross kernel
+    img_morph = cv2.morphologyEx(img_edges, cv2.MORPH_CLOSE, kernel_cross)  # close grid lines
+
     # Find largest contour
-    contours, _ = cv2.findContours(img_edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  # get contours
-    largest_cnt = sorted(contours, key=cv2.contourArea, reverse=True)[0]  # sort by area and take first element
+    _, contours, _ = cv2.findContours(img_morph, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)  # get contours
+    cnt = max(contours, key=cv2.contourArea)  # find largest contour by area
+    cnt = cnt.reshape((-1, 2))
 
-    # Draw largest rectangle
-    rect = np.zeros(img.shape[0:2], dtype=np.uint8)
-    rect = cv2.drawContours(rect, [largest_cnt], 0, (255), 2)
+    # Find corner points of contour
+    s = np.sum(cnt, axis=1)  # x + y
+    tl = tuple(cnt[np.argmin(s)])  # lower sum; top left
+    br = tuple(cnt[np.argmax(s)])  # higher sum; bottom right
 
-    # Find corners points with "Shi-Tomasi Corner Detector"
-    pts = cv2.goodFeaturesToTrack(rect, minDistance=20, maxCorners=4, qualityLevel=0.01)
-    pts = np.int0(pts)
-    pts = pts.reshape((4, 2))
-
-    # Sort corner points
-    s = pts.sum(axis=1)  # x + y
-    tl = tuple(pts[np.argmin(s)])  # lower sum; top left
-    br = tuple(pts[np.argmax(s)])  # higer sum; bottom right
-
-    diff = np.diff(pts, axis=1)  # x - y
-    tr = tuple(pts[np.argmin(diff)])  # lower diff; top right
-    bl = tuple(pts[np.argmax(diff)])  # higer diff; bottom left
+    diff = np.diff(cnt, axis=1)  # x - y
+    tr = tuple(cnt[np.argmin(diff)])  # lower diff; top right
+    bl = tuple(cnt[np.argmax(diff)])  # higher diff; bottom left
 
     # Adjust perspective
     rows = cols = 500
