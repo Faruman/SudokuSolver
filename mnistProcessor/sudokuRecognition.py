@@ -88,7 +88,7 @@ def extract_sudoku(img):
 def extract_numbers(cimg):
     #load my model
     model = Complex2_Net()
-    model.load_state_dict(torch.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/model_complex_v2_ext.sav"))
+    model.load_state_dict(torch.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/model_complex_v2_ext2.sav"))
     model.eval()
 
     # Split image into 81 cells with numbers
