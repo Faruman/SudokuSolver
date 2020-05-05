@@ -18,6 +18,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 import os
 import math
+import time
+
+#measure execution time
+start = time.time()
 
 #check for cuda
 print(torch.cuda.is_available())
@@ -31,10 +35,10 @@ else:
     print("cpu")
 
 #load data
-train_images = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/x_train_ext_invt.npy")
-train_labels = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/y_train_ext_invt.npy")
-test_images = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/x_test_ext.npy")
-test_labels = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/y_test_ext.npy")
+train_images = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/x_train_ext3.npy")
+train_labels = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/y_train_ext3.npy")
+test_images = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/x_test_ext3.npy")
+test_labels = np.load("D:/Programming/Python/SudokuSolver/data/moddedMNIST/y_test_ext3.npy")
 train_images = train_images.astype('float32')
 test_images = test_images.astype('float32')
 train_labels = train_labels.astype('int32')
@@ -131,7 +135,7 @@ class Complex2_Net(nn.Module):
             nn.ReLU(inplace=True),
             nn.Dropout(0.25),
             nn.Linear(128, 10),
-            nn.Softmax()
+            nn.Softmax(dim=1)
         )
 
     def forward(self, x):
@@ -290,11 +294,14 @@ global performance
 performance = []
 
 for n in range(num_epochs):
+    start_round = time.time()
     train_model(n)
     evaluate(val_loader)
+    end_round = time.time()
+    print("Time needed for Round {}: {}".format(n,(end_round - start_round)))
 
 #save the model
-torch.save(conv_model.state_dict(), "D:/Programming/Python/SudokuSolver/data/moddedMNIST/model_complex_v2_ext.sav")
+torch.save(conv_model.state_dict(), "D:/Programming/Python/SudokuSolver/data/moddedMNIST/model_complex_v2_ext3.sav")
 
 #create test routine
 def make_predictions(data_loader):
@@ -327,3 +334,6 @@ plt.xlabel('Epoche')
 plt.show()
 
 print(accuracy_score(test_labels, test_set_preds))
+
+end = time.time()
+print("Time needed for Training: {}".format(end - start))
