@@ -53,7 +53,7 @@ class sudokuProcessor():
         self.pred = np.zeros((9, 9))
         self.pred = np.zeros((9, 9))
         self.model = Complex_Net()
-        self.model.load_state_dict(torch.load(model_path))
+        self.model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 
     def extract_sudoku(self, img = np.array([])):
         if img.size == 0:
@@ -136,13 +136,3 @@ class sudokuProcessor():
         self.extract_sudoku()
         self.extract_numbers()
         return(self.pred, self.prob)
-
-raw_img = cv2.imread("D:\Programming\Python\SudokuSolver\data\sudoku_img\mixed\image (3).jpg")
-plt.imshow(cv2.cvtColor(raw_img, cv2.COLOR_BGR2GRAY).astype('float32'), cmap='gray_r', vmin=0, vmax=255)
-plt.show()
-
-solver = sudokuProcessor("D:/Programming/Python/SudokuSolver/data/moddedMNIST/model_complex_v2_ext2.sav")
-pred, prob = solver.process(raw_img)
-
-print(pred)
-print(prob)

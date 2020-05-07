@@ -9,12 +9,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container text-light mb-5">
+    <div class="container text-light my-5">
         <div class="row align-items-center h-100">
             <div class="col-md-4 mx-auto">
                 <div class="row">
-                    <div class="col-12 btn-div upload-div"><button type="button" class="mb-3 btn btn-light btn-block upload-btn text-dark">Upload</button></div>
-                    <div class="col-12 btn-div generate-div"><button type="button" class="mb-3 btn btn-light btn-block generate-btn text-dark" onclick="generate()">Generate</button></div>
+                    <div class="col-12 btn-div upload-div"><button type="button" class="mb-3 btn btn-light btn-block upload-btn text-dark" onclick="upload()">Upload</button></div>
+                    <input type="file" id="SudokuUpload" accept="image/*" style="display: none" capture="camera">
+                    <div class="col-12 btn-div generate-div"><button type="button" class="mb-3 btn btn-light btn-block generate-btn text-dark" data-toggle="modal" data-target="#DifficultyModal">Generate</button></div>
                     <div class="col-12 btn-div modify-div"><button type="button" class="mb-4 mt-2 btn btn-light btn-block modify-btn text-dark">Modify</button></div>
                     <div class="col-12 btn-div check-div"><button type="button" class="mb-3 btn btn-light btn-block check-btn text-dark" onclick="solve('check')">Check</button></div>
                     <div class="col-12 btn-div solve-div"><button type="button" class="mb-3 btn btn-light btn-block solve-btn text-dark" onclick="solve('solve')">Solve</button></div>
@@ -133,7 +134,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="overlay m-3" id="loading">
+                    <div class="overlay mx-3" id="loading">
                         <div class="text-dark align-self-center mx-auto">
                             <h3 class="pb-2">Sorry, an error occurred.</h3>
                             <div class="spinner-border text-danger" role="status">
@@ -144,6 +145,36 @@
                 </div>
             </div>
         </div>
+    </div>
+{% endblock %}
+
+{% block modal %}
+    <div class="modal fade" id="DifficultyModal" tabindex="-1" role="dialog" aria-labelledby="DifficultyModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Select difficulty level</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm">
+                                    <button type="button" class="btn btn-dark btn-block" data-dismiss="modal" onclick="generate('low')">Low</button>
+                                </div>
+                                <div class="col-sm">
+                                    <button type="button" class="btn btn-dark btn-block" data-dismiss="modal" onclick="generate('medium')">Medium</button>
+                                </div>
+                                <div class="col-sm">
+                                    <button type="button" class="btn btn-dark btn-block" data-dismiss="modal" onclick="generate('high')">High</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 {% endblock %}
 

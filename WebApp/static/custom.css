@@ -88,7 +88,7 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
     width: calc(100% - 2rem)!important;
-    height: calc(100% - 2rem)!important;
+    height: calc(100%)!important;
 }
 .spinner-border.text-danger{
     color: darkred!important;
@@ -101,4 +101,9 @@ body {
 .flash-message{
     font-size: 1rem;
     margin-bottom: 0;
+}
+
+/*adjust difficulty modal to let be more centered on the page*/
+.modal-dialog {
+  padding-top: 15%;
 }

@@ -2,26 +2,28 @@
 function adjustSudokuBox() {
     $('.sudoku-box').each(function() {
             $(this).css('font-size', Math.max(0.3*parseFloat($(this).parent().css('width'))/9, 10));
-            $(this).css('height', parseFloat($(this).parent().css('width'))/9)
+            $(this).css('height', parseFloat($(this).parent().css('width'))/9);
+            $(this).css('width', parseFloat($(this).parent().css('width'))/9)
         }
     )
 }
 
 function fillPuzzle(puzzle) {
-    $('.sudoku').data('puzzle', JSON.stringify({'puzzle': puzzle}));
+    //$('.sudoku').data('puzzle', JSON.stringify({'puzzle': puzzle}));
+    $('.sudoku').data('puzzle', puzzle);
     if ($('.sudoku')[0].hasAttribute('data-solution')) {
         $('.sudoku').removeData('solution')
     }
     for (var i = 0; i < puzzle.length; i++) {
         for (var j = 0; j < puzzle[i].length; j++){
-            $('#'.concat(i.toString(), '-', j.toString())).removeClass('error')
+            $('#'.concat(i.toString(), '-', j.toString())).removeClass('error');
             if (puzzle[i][j] != 0){
                 $('#'.concat(i.toString(), '-', j.toString())).html(puzzle[i][j].toString());
                 $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'false');
                 $('#'.concat(i.toString(), '-', j.toString())).addClass('locked')
             }else{
                 $('#'.concat(i.toString(), '-', j.toString())).html('');
-                $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'true')
+                $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'true');
                 $('#'.concat(i.toString(), '-', j.toString())).removeClass('locked')
             }
         }
@@ -42,9 +44,9 @@ function getPuzzle() {
 
 // adjust sudoku grid on load
 $(document).ready(function() {
-    $('.modify-btn').data('mode', 'solve')
+    $('.modify-btn').data('mode', 'solve');
     adjustSudokuBox();
-    generate()
+    generate("low")
 });
 
 // adjsut webpage when screen size changes
@@ -73,12 +75,12 @@ $( window ).resize(function() {
 
 // Prevent users from entering more than one digit per field
 $('.sudoku-box').on('keydown paste', function(event) {
-    var allowed_keys = [49, 50, 51, 52, 53, 54, 56, 57]
-    var always_allowed_keys = [8, 46]
+    var allowed_keys = [49, 50, 51, 52, 53, 54, 56, 57];
+    var always_allowed_keys = [8, 46];
     if(!(always_allowed_keys.includes(event.keyCode) ||($(this).text().length < 1 && allowed_keys.includes(event.keyCode)))) {
         event.preventDefault();
     } else {
-        $(this).removeClass('error')
+        $(this).removeClass('error');
         if ($(".modify-btn" ).data('mode')=='modify') {
             if (always_allowed_keys.includes(event.keyCode)){
                 $(this).removeClass('locked')
@@ -89,14 +91,52 @@ $('.sudoku-box').on('keydown paste', function(event) {
     }
 });
 
-//function to generate a newe Sudoku via a post request to the server
-function generate(){
-    $('#loading').find('h3').html('Generating Sudoku ...');
+//function to upload the image of a new sudoku
+function upload(){
+    $("#SudokuUpload").click();
+}
+$("#SudokuUpload").change(function () {
+    var Image = $(this)[0].files[0];
+    $('#loading').find('h3').html('Loading Sudoku ...');
     $('#loading').css('display', 'flex');
 
     $.ajax({
         type: "POST",
+        url: "readSudoku",
+        data: Image,
+        processData: false,
+        contentType: false,
+        success: readSuccess,
+        error: errorOccurred
+    });
+    function readSuccess(data) {
+        data = JSON.parse(data);
+        puzzle = data.puzzle;
+        if (puzzle.length > 0){
+            fillPuzzle(data.puzzle);
+        }else{
+            $('.flash-message').html('Sorry, no Sudoku was recognized in your picture (please upload an empty Sudoku).');
+            $('.flash-box').fadeIn();
+            setTimeout(function() {
+                $('.flash-box').fadeOut()
+            }, 10000)
+        }
+        setTimeout(function () {$('#loading').css('display', 'none')}, 250)
+    }
+
+});
+
+//function to generate a newe Sudoku via a post request to the server
+function generate(difficulty){
+    $('#loading').find('h3').html('Generating Sudoku ...');
+    $('#loading').css('display', 'flex');
+
+    var dif_dict = {'difficulty': difficulty};
+
+    $.ajax({
+        type: "POST",
         url: "/generateSudoku",
+        data: dif_dict,
         success: generateSuccess,
         error: errorOccurred,
         dataType: "json"
@@ -104,6 +144,7 @@ function generate(){
 
     function generateSuccess(data){
         fillPuzzle(data.puzzle);
+        $('.sudoku').data('solution', data.solution);
         setTimeout(function () {$('#loading').css('display', 'none')}, 250)
     }
 }
@@ -117,7 +158,7 @@ function solve(solutionType){
     }
     $('#loading').css('display', 'flex');
 
-    var puzzle = getPuzzle()
+    var puzzle = getPuzzle();
 
     if (JSON.stringify(puzzle) == JSON.stringify($('.sudoku').data('puzzle')) && typeof $('.sudoku').data('solution') !== 'undefined'){
         solveSuccess({'solution' : $('.sudoku').data('solution'), 'valid': true})
@@ -155,7 +196,7 @@ function solve(solutionType){
                         } else {
                             $('#'.concat(i.toString(), '-', j.toString())).html(solution[i][j].toString());
                         }
-                        $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'true')
+                        $('#'.concat(i.toString(), '-', j.toString())).attr('contenteditable', 'true');
                         $('#'.concat(i.toString(), '-', j.toString())).removeClass('locked')
                     }
                 }
@@ -167,11 +208,11 @@ function solve(solutionType){
                 $('.flash-box').fadeOut()
             }, 10000)
         }
-        if (JSON.stringify(puzzle) == JSON.stringify($('.sudoku').data('puzzle')) && typeof $('.sudoku').data('solution') !== 'undefined') {
+        //if (JSON.stringify(puzzle) == JSON.stringify($('.sudoku').data('puzzle')) && typeof $('.sudoku').data('solution') !== 'undefined') {
             setTimeout(function () {
                 $('#loading').css('display', 'none')
             }, 500)
-        }
+        //}
     }
 }
 
@@ -180,7 +221,7 @@ $(".modify-btn" ).click(function() {
     if ($(this).data('mode')=='solve'){
         $(this).html("Finish");
         $(this).parent().siblings().each(function() { $(this).children('.btn').prop('disabled', true) });
-        $(this).data('mode', 'modify')
+        $(this).data('mode', 'modify');
         $('.sudoku-box').each(function() {
             $(this).attr('contenteditable', 'true');
         });
@@ -191,7 +232,7 @@ $(".modify-btn" ).click(function() {
     } else {
         $(this).html("Modify");
         $(this).parent().siblings().each(function() { $(this).children('.btn').prop('disabled', false) });
-        $(this).data('mode', 'solve')
+        $(this).data('mode', 'solve');
         $('.sudoku-box.locked').each(function() {
             $(this).attr('contenteditable', 'false');
         })
