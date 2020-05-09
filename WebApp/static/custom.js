@@ -97,8 +97,13 @@ function upload(){
 }
 $("#SudokuUpload").change(function () {
     var Image = $(this)[0].files[0];
+    $('.flash-box').fadeOut()
     $('#loading').find('h3').html('Loading Sudoku ...');
     $('#loading').css('display', 'flex');
+
+    //remove the old sudoku
+    $('.sudoku-box').each(function() {$(this).removeClass('locked')})
+    $('.sudoku-box').each(function() {$(this).html("")})
 
     $.ajax({
         type: "POST",
@@ -128,6 +133,7 @@ $("#SudokuUpload").change(function () {
 
 //function to generate a newe Sudoku via a post request to the server
 function generate(difficulty){
+    $('.flash-box').fadeOut()
     $('#loading').find('h3').html('Generating Sudoku ...');
     $('#loading').css('display', 'flex');
 
@@ -151,6 +157,7 @@ function generate(difficulty){
 
 //function to solve a sudoku by sending it to the server, b solution type it can be determined if the complete solution is displayed or only the errors are highlighted.
 function solve(solutionType){
+    $('.flash-box').fadeOut()
     if (solutionType == "check") {
         $('#loading').find('h3').html('Checking Sudoku ...');
     } else {

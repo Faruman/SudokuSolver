@@ -77,9 +77,7 @@ class sudokucreator:
             self.remove_values()
         return
 
-    def create_sudoku(self):
-        input_level = input(
-            "Please indicate the level: ('easy', 'medium', 'hard') :")
+    def create_sudoku(self, input_level):
         start_time = time.time()
         self.x = 0
         self.iterration = 0

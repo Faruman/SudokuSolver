@@ -51,7 +51,7 @@ class sudokuProcessor():
         self.img_raw = np.array([])
         self.img_processed = np.zeros((500, 500))
         self.pred = np.zeros((9, 9))
-        self.pred = np.zeros((9, 9))
+        self.probs = np.zeros((9, 9))
         self.model = Complex_Net()
         self.model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 
