@@ -75,7 +75,7 @@ $( window ).resize(function() {
 
 // Prevent users from entering more than one digit per field
 $('.sudoku-box').on('keydown paste', function(event) {
-    var allowed_keys = [49, 50, 51, 52, 53, 54, 56, 57];
+    var allowed_keys = [49, 50, 51, 52, 53, 54, 55, 56, 57];
     var always_allowed_keys = [8, 46];
     if(!(always_allowed_keys.includes(event.keyCode) ||($(this).text().length < 1 && allowed_keys.includes(event.keyCode)))) {
         event.preventDefault();
