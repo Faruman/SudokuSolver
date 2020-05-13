@@ -35,7 +35,7 @@ After creating a sudoku, you can enter your numbers directly in the white boxes.
         * sudoku_creating_algorithm.py &nbsp; *(generate sudokus)*
         * sudoku_solving_algorithm.py &nbsp; *(solve sudoku)*
         
-**mnistProcessor:** ()
+**mnistProcessor:**
 * mnistClassification.py &nbsp; *(train model on augmented MNIST)*
 * mnistGenerator.py &nbsp; *(augment MNIST dataset)*
 * sudokuRecognition.py &nbsp; (xxxx)
