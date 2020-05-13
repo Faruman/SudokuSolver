@@ -96,24 +96,32 @@ function upload(){
     $("#SudokuUpload").click();
 }
 $("#SudokuUpload").change(function () {
-    var Image = $(this)[0].files[0];
-    $('.flash-box').fadeOut()
+    $('.flash-box').fadeOut();
     $('#loading').find('h3').html('Loading Sudoku ...');
     $('#loading').css('display', 'flex');
 
     //remove the old sudoku
-    $('.sudoku-box').each(function() {$(this).removeClass('locked')})
-    $('.sudoku-box').each(function() {$(this).html("")})
+    $('.sudoku-box').each(function() {$(this).removeClass('locked')});
+    $('.sudoku-box').each(function() {$(this).html("")});
 
-    $.ajax({
-        type: "POST",
-        url: "readSudoku",
-        data: Image,
-        processData: false,
-        contentType: false,
-        success: readSuccess,
-        error: errorOccurred
-    });
+    const file = $(this)[0].files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+        alert(reader.result);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:7071/api/predict",
+            data: reader.result.split(',')[1],
+            processData: false,
+            contentType: false,
+            success: readSuccess,
+            error: errorOccurred
+        });
+    };
+
+    const data = reader.readAsDataURL(file);
+
     function readSuccess(data) {
         data = JSON.parse(data);
         puzzle = data.puzzle;

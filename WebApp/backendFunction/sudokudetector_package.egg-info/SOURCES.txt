@@ -1,0 +1,8 @@
+README.md
+gcloud_prediction.py
+models.py
+setup.py
+sudokudetector_package.egg-info/PKG-INFO
+sudokudetector_package.egg-info/SOURCES.txt
+sudokudetector_package.egg-info/dependency_links.txt
+sudokudetector_package.egg-info/top_level.txt

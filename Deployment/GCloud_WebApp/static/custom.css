@@ -1,0 +1,109 @@
+/*format links in black*/
+a.text-black{
+    color: black !important;
+}
+
+/* let icon on navbar switch between collaped and non-collapsed state */
+.navbar-toggler>.bi-caret-up-fill{
+    display: none !important;
+}
+.navbar-toggler.collapsed>.close, .navbar-toggler:not(.collapsed)>.bi-caret-down-fill {
+    display:none !important;
+}
+.navbar-toggler.collapsed>.close, .navbar-toggler:not(.collapsed)>.bi-caret-up-fill {
+    display:inline !important;
+}
+
+/*Modify table border for Sudoku grid */
+table.table-bordered > tbody > tr > td{
+    background-color: white;
+    border: solid thin;
+    text-align: center;
+    padding: 0;
+}
+colgroup, tbody {
+    border: solid medium;
+}
+
+/*style sudoku grid for functions */
+.sudoku-box.locked{
+    background: lightgrey;
+}
+.sudoku-box.error {
+    background: darkred;
+    color: white;
+    border-color: black;
+}
+.sudoku-box{
+    overflow: hidden;
+}
+.sudoku-box:focus {
+    outline: darkred auto 1px;
+    outline-color: darkred;
+    outline-style: auto;
+    outline-width: 1px;
+}
+
+
+/*style for different screen sizes */
+.sudoku{
+    margin: auto;
+}
+.btn{
+   overflow: hidden;
+}
+@media (min-width: 992px){
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 960px !important;
+    }
+}
+@media (max-width: 768px) {
+    .navbar-toggler{
+        display: none;
+    }
+    .navbar{
+        cursor: pointer;
+    }
+    .modify-div{
+        display: none;
+    }
+}
+
+/*hide the scroll-bar */
+/* for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+/* for IE and Edge */
+body {
+  -ms-overflow-style: none;
+}
+
+/* loading overlay above sudoku grid */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none; /* change to "display: flex" to display overlay properly*/
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    width: calc(100% - 2rem)!important;
+    height: calc(100%)!important;
+}
+.spinner-border.text-danger{
+    color: darkred!important;
+}
+
+/* flash message on top of the page */
+.flash-box{
+    display: none;
+}
+.flash-message{
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/*adjust difficulty modal to let be more centered on the page*/
+.modal-dialog {
+  padding-top: 15%;
+}

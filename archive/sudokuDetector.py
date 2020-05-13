@@ -23,7 +23,7 @@ def shGetRidOfColor(matrix, max, color):
                 cv2.floodFill(matrix, None, (x, y), 0)
     return matrix
 
-sudoku = cv2.imread("D:\Programming\Python\SudokuSolver\data\sudoku_img\mixed\image201.jpg", 0)
+sudoku = cv2.imread("D:/Programming/Python/SudokuSolver/data/sudoku_img/uploads/5.png", 0)
 height = sudoku.shape[0]
 width = sudoku.shape[1]
 plt.imshow(sudoku, cmap='gray', vmin=0, vmax=255)

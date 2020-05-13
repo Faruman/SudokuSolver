@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: sudokudetector-package
+Version: 1.0.1
+Summary: Pytorch package containing a machine learning model for the prediction of the numbers in a sudoku grid.
+Home-page: http://mysudokusolver.ey.r.appspot.com/
+Author: Fabian Karst
+Author-email: faruman.der.weise@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN

@@ -109,10 +109,10 @@ x_train = np.array(list(map(resizeFunc, x_train)))
 x_test = np.array(list(map(resizeFunc, x_test)))
 
 #add artificial samples to have computer written images
-temp_y_train = np.random.randint(low=0, high=9, size=int(round(0.1*x_train.shape[0], 0)))
+temp_y_train = np.random.randint(low=0, high=9, size=int(round(0.25*x_train.shape[0], 0)))
 x_train = np.concatenate((x_train, np.array(list(map(generateComputerImage, temp_y_train)))), axis=0)
 y_train = np.concatenate((y_train, temp_y_train), axis=0)
-temp_y_test = np.random.randint(low=0, high=9, size=int(round(0.1*x_test.shape[0], 0)))
+temp_y_test = np.random.randint(low=0, high=9, size=int(round(0.25*x_test.shape[0], 0)))
 x_test = np.concatenate((x_test, np.array(list(map(generateComputerImage, temp_y_test)))), axis=0)
 y_test = np.concatenate((y_test, temp_y_test), axis=0)
 
