@@ -36,7 +36,8 @@ def generateSudoku():
 def readSudoku():
     #function outsourced to azure cloud functions
     data = {"data": request.data.decode("utf-8")}
-    url = "https://sudokupredictor.azurewebsites.net/api/predict?code=1rsJlv71SjSrMuXuDRvz9teD7U18pnIO9T9dJzaEVIkb4IeeweqH6g=="
+    
+    url = "https://sudokupredictor.azurewebsites.net/api/predict?code={{key}}"
     try:
         answer = requests.post(url, json=data, timeout=10)
         puzzle = json.loads(answer.content.decode("utf-8"))["puzzle"]
