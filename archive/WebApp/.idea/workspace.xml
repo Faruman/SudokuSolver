@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86a1756c-d90c-4219-9bd2-b04fde48bb55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/static/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WebApp_Backup/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WebApp_Backup/old/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../archive/sudokuDetector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../archive/sudokuDetector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mnistProcessor/mnistGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../mnistProcessor/mnistGenerator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Deployment/Azure_CloudFunction/predict/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Deployment/Azure_CloudFunction/predict/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Deployment/GCloud_WebApp/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Deployment/GCloud_WebApp/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Deployment/GCloud_WebApp/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Deployment/GCloud_WebApp/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Deployment/GCloud_WebApp/static/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../Deployment/GCloud_WebApp/static/custom.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +37,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1b4hRAjQHzxNZIL6oXtisyOFqAs" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -63,7 +62,7 @@
       <recent name="D:\Programming\Python\SudokuSolver\WebApp" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager" selected="Flask server.Flask (app.py)">
     <configuration name="Sodoku Recognition_v8" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="WebApp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -199,8 +198,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app" />
         <item itemvalue="Flask server.Flask (app.py)" />
+        <item itemvalue="Python.app" />
         <item itemvalue="Python.mnistGenerator" />
         <item itemvalue="Python.Sodoku Recognition_v8" />
         <item itemvalue="Python.sudokuDetector" />
@@ -237,6 +236,8 @@
       <workItem from="1589009301626" duration="10456000" />
       <workItem from="1589278694385" duration="5192000" />
       <workItem from="1589345601104" duration="2951000" />
+      <workItem from="1589977100080" duration="5003000" />
+      <workItem from="1590131633564" duration="2532000" />
     </task>
     <task id="LOCAL-00001" summary="Created WebApp.&#10;Added initial design">
       <created>1587973366694</created>
@@ -363,42 +364,42 @@
     <state x="-1180" y="213" key="FileChooserDialogImpl/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589014740259" />
     <state x="592" y="240" key="FileChooserDialogImpl/0.0.1536.824/-1920.-125.1920.1160@0.0.1536.824" timestamp="1589038787740" />
     <state x="592" y="240" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1588234301078" />
-    <state width="1877" height="303" key="GridCell.Tab.0.bottom" timestamp="1589348554344">
+    <state width="1892" height="307" key="GridCell.Tab.0.bottom" timestamp="1590133825966">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554344" />
+    <state width="1892" height="307" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825966" />
     <state width="458" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588233289140" />
-    <state width="1877" height="303" key="GridCell.Tab.0.center" timestamp="1589348554344">
+    <state width="1892" height="307" key="GridCell.Tab.0.center" timestamp="1590133825965">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.0.center/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554344" />
+    <state width="1892" height="307" key="GridCell.Tab.0.center/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825965" />
     <state width="458" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588233289139" />
-    <state width="1877" height="303" key="GridCell.Tab.0.left" timestamp="1589348554344">
+    <state width="1892" height="307" key="GridCell.Tab.0.left" timestamp="1590133825965">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.0.left/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554344" />
+    <state width="1892" height="307" key="GridCell.Tab.0.left/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825965" />
     <state width="458" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588233289138" />
-    <state width="1877" height="303" key="GridCell.Tab.0.right" timestamp="1589348554344">
+    <state width="1892" height="307" key="GridCell.Tab.0.right" timestamp="1590133825965">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.0.right/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554344" />
+    <state width="1892" height="307" key="GridCell.Tab.0.right/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825965" />
     <state width="458" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588233289139" />
-    <state width="1877" height="303" key="GridCell.Tab.1.bottom" timestamp="1589348554345">
+    <state width="1892" height="307" key="GridCell.Tab.1.bottom" timestamp="1590133825883">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.1.bottom/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554345" />
-    <state width="1877" height="303" key="GridCell.Tab.1.center" timestamp="1589348554345">
+    <state width="1892" height="307" key="GridCell.Tab.1.bottom/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825883" />
+    <state width="1892" height="307" key="GridCell.Tab.1.center" timestamp="1590133825883">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.1.center/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554345" />
-    <state width="1877" height="303" key="GridCell.Tab.1.left" timestamp="1589348554345">
+    <state width="1892" height="307" key="GridCell.Tab.1.center/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825883" />
+    <state width="1892" height="307" key="GridCell.Tab.1.left" timestamp="1590133825883">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.1.left/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554345" />
-    <state width="1877" height="303" key="GridCell.Tab.1.right" timestamp="1589348554345">
+    <state width="1892" height="307" key="GridCell.Tab.1.left/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825883" />
+    <state width="1892" height="307" key="GridCell.Tab.1.right" timestamp="1590133825883">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
-    <state width="1877" height="303" key="GridCell.Tab.1.right/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1589348554345" />
+    <state width="1892" height="307" key="GridCell.Tab.1.right/0.0.1536.824/-1920.-125.1920.1160@-1920.-125.1920.1160" timestamp="1590133825883" />
     <state x="-1457" y="114" key="SettingsEditor" timestamp="1589004269726">
       <screen x="-1920" y="-125" width="1920" height="1160" />
     </state>
@@ -451,6 +452,36 @@
           <line>91</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/sudokudetector/sudokuDetector.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/sudokudetector/sudokuDetector.py</url>
+          <line>140</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/packages/sudokudetector/sudokuDetector.py</url>
+          <line>143</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app.py</url>
+          <line>62</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -464,7 +495,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WebApp$sudoku_solving_algorithm.coverage" NAME="sudoku_solving_algorithm Coverage Results" MODIFIED="1588060435880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/packages/sudokusolver" />
     <SUITE FILE_PATH="coverage/WebApp$sudokuDetector.coverage" NAME="sudokuDetector Coverage Results" MODIFIED="1588156419827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
-    <SUITE FILE_PATH="coverage/WebApp$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1589289813415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WebApp$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1590133825851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WebApp$mnistGenerator.coverage" NAME="mnistGenerator Coverage Results" MODIFIED="1588226090154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/WebApp$app.coverage" NAME="app Coverage Results" MODIFIED="1589348448476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../Azure/WebApp" />
     <SUITE FILE_PATH="coverage/WebApp$Sudoku_solving_algorithm.coverage" NAME="Sudoku_solving_algorithm Coverage Results" MODIFIED="1588060572576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />

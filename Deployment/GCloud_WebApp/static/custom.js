@@ -123,11 +123,12 @@ $("#SudokuUpload").change(function () {
 
     function readSuccess(data) {
         data = JSON.parse(data);
-        puzzle = data.puzzle;
+        var puzzle = data.puzzle;
+        var error = data.error;
         if (puzzle.length > 0){
             fillPuzzle(data.puzzle);
         }else{
-            $('.flash-message').html('Sorry, no Sudoku was recognized in your picture (please upload an empty Sudoku).');
+            $('.flash-message').html('Sorry, no Sudoku was recognized in your picture ('.concat(error, ').'));
             $('.flash-box').fadeIn();
             setTimeout(function() {
                 $('.flash-box').fadeOut()

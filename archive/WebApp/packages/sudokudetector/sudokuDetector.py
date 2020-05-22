@@ -133,6 +133,12 @@ class sudokuProcessor():
 
     def process(self, img):
         self.img_raw = img
+        plt.imshow(self.img_raw, cmap='gray_r', vmin=0, vmax=255)
+        plt.show()
         self.extract_sudoku()
+        plt.imshow(self.img_processed, cmap='gray_r', vmin=0, vmax=255)
+        plt.show()
         self.extract_numbers()
+        print(self.pred)
+        print(self.prob.round(2))
         return(self.pred, self.prob)
