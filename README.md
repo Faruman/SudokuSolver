@@ -1,6 +1,6 @@
 # Sudoku Solver
 
-The [Sudoku Solver](https://mysudokusolver.ey.r.appspot.com/) is a web application that leverages deep learning and 
+The [Sudoku Solver](https://mysudokusolver.ey.r.appspot.com/) is a web application for desktop and mobile that leverages deep learning and 
 iterative processes to create the perfect environment to work on your sudokus. 
 
 ## Using the Sudoku Solver
