@@ -46,7 +46,7 @@ function getPuzzle() {
 $(document).ready(function() {
     $('.modify-btn').data('mode', 'solve');
     adjustSudokuBox();
-    generate("low")
+    generate("low", "yes")
 });
 
 // adjsut webpage when screen size changes
@@ -76,7 +76,7 @@ $( window ).resize(function() {
 // Prevent users from entering more than one digit per field
 $('.sudoku-box').on('keydown paste', function(event) {
     var allowed_keys = [49, 50, 51, 52, 53, 54, 55, 56, 57];
-    var always_allowed_keys = [8, 46];
+    var always_allowed_keys = [8, 37, 39, 46];
     if(!(always_allowed_keys.includes(event.keyCode) ||($(this).text().length < 1 && allowed_keys.includes(event.keyCode)))) {
         event.preventDefault();
     } else {
@@ -108,10 +108,9 @@ $("#SudokuUpload").change(function () {
     const reader = new FileReader();
 
     reader.onloadend = function () {
-        alert(reader.result);
         $.ajax({
             type: "POST",
-            url: "http://localhost:7071/api/predict",
+            url: "/readSudoku",
             data: reader.result.split(',')[1],
             processData: false,
             contentType: false,
@@ -124,11 +123,12 @@ $("#SudokuUpload").change(function () {
 
     function readSuccess(data) {
         data = JSON.parse(data);
-        puzzle = data.puzzle;
+        var puzzle = data.puzzle;
+        var error = data.error;
         if (puzzle.length > 0){
             fillPuzzle(data.puzzle);
         }else{
-            $('.flash-message').html('Sorry, no Sudoku was recognized in your picture (please upload an empty Sudoku).');
+            $('.flash-message').html('Sorry, no Sudoku was recognized in your picture ('.concat(error, ').'));
             $('.flash-box').fadeIn();
             setTimeout(function() {
                 $('.flash-box').fadeOut()
@@ -140,12 +140,12 @@ $("#SudokuUpload").change(function () {
 });
 
 //function to generate a newe Sudoku via a post request to the server
-function generate(difficulty){
+function generate(difficulty, newload="no"){
     $('.flash-box').fadeOut()
     $('#loading').find('h3').html('Generating Sudoku ...');
     $('#loading').css('display', 'flex');
 
-    var dif_dict = {'difficulty': difficulty};
+    var dif_dict = {'difficulty': difficulty, 'newload': newload};
 
     $.ajax({
         type: "POST",

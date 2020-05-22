@@ -22,7 +22,7 @@ class sudokuPrediction():
 
         puzzle = list()
         _, pred_counts = np.unique(pred[pred != 0], return_counts=True)
-        if np.mean(prob) > 0.5 and np.count_nonzero(pred) > 16 and max(pred_counts) <= 9:
+        if np.mean(prob[pred != 0]) > 0.5 and np.count_nonzero(pred) > 16 and max(pred_counts) <= 9:
             puzzle = pred.tolist()
 
         return (puzzle)

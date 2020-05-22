@@ -4,7 +4,10 @@ from packages.sudokucreator import sudokucreator
 from datetime import timedelta
 import json
 import numpy as np
+import random
 import requests
+from urllib3.util.retry import Retry
+from requests.adapters import HTTPAdapter
 
 app = Flask(__name__)
 app.secret_key = "SZlMZmTBp2FvmoQGWPSq8n32UG8e02Lp"
@@ -22,6 +25,12 @@ def generateSudoku():
     if request.form.to_dict()['newload'] == "yes" and session.get("puzzle"):
         puzzle = session.get("puzzle")
         JSON_dict = {"puzzle": puzzle}
+    elif request.form.to_dict()['newload'] == "yes":
+        sudokus = np.load("data/sudokus.npy")
+        rand = random.randint(0, 4)
+        puzzle = sudokus[rand, 0, :, :].astype("float32").tolist()
+        solution = sudokus[rand, 1, :, :].astype("float32").tolist()
+        JSON_dict = {"puzzle": puzzle, "solution": solution}
     else:
         _, puzzle, solution = creator.create_sudoku(difficulty)
         puzzle = puzzle.astype("float32").tolist()
@@ -36,14 +45,24 @@ def generateSudoku():
 def readSudoku():
     #function outsourced to azure cloud functions
     data = {"data": request.data.decode("utf-8")}
-    url = "https://sudokupredictor.azurewebsites.net/api/predict?code=1rsJlv71SjSrMuXuDRvz9teD7U18pnIO9T9dJzaEVIkb4IeeweqH6g=="
-    try:
-        answer = requests.post(url, json=data, timeout=10)
+
+    url = "https://sudokupredictor.azurewebsites.net/api/predict?code={{key}}"
+
+    s = requests.Session()
+    retries = Retry(total=3,
+                    backoff_factor=0.1,
+                    status_forcelist=[500, 502, 503, 504])
+
+    s.mount('https://', HTTPAdapter(max_retries=retries))
+    answer = s.post(url, json=data)
+    if answer.status_code == 200:
         puzzle = json.loads(answer.content.decode("utf-8"))["puzzle"]
+        error = "error: no sudoku identified"
         session["puzzle"] = puzzle
-    except:
+    else:
         puzzle = []
-    JSON_dict = {"puzzle": puzzle}
+        error = "connection error: {}".format(answer.status_code)
+    JSON_dict = {"puzzle": puzzle, "error": error}
     return json.dumps(JSON_dict)
 
 

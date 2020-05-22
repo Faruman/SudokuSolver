@@ -38,8 +38,8 @@ After creating a sudoku, you can enter your numbers directly in the white boxes.
 **mnistProcessor:**
 * mnistClassification.py &nbsp; *(train model on augmented MNIST)*
 * mnistGenerator.py &nbsp; *(augment MNIST dataset)*
-* sudokuRecognition.py &nbsp; (xxxx)
-* sudokuRecognitionClass.py &nbsp; (xxxx)
+* sudokuRecognition.py &nbsp;  *(predictor using the previously trained model to read sudokus)*
+* sudokuRecognitionClass.py &nbsp;  *(predictor wrapped into a class for easier handling)*
 
 
 
